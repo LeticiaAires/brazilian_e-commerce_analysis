@@ -191,7 +191,7 @@ Esses são dados comerciais reais, foram anonimizados e as referências às empr
 
 
 
-## Observações sobreos dados
+## Observações sobre os dados
 
 1. **Dados faltantes**:
    - Orders: Datas de entrega ausentes em pedidos cancelados (esperado)
