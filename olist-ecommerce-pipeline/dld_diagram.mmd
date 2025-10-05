@@ -1,0 +1,67 @@
+erDiagram
+    CUSTOMERS {
+      VARCHAR customer_id PK
+      VARCHAR customer_unique_id
+      INT customer_zip_code_prefix
+      VARCHAR customer_city
+      CHAR customer_state
+    }
+    ORDERS {
+      VARCHAR order_id PK
+      VARCHAR customer_id FK
+      VARCHAR order_status
+      TIMESTAMP order_purchase_timestamp
+      TIMESTAMP order_approved_at
+      TIMESTAMP order_delivered_carrier_date
+      TIMESTAMP order_delivered_customer_date
+      TIMESTAMP order_estimated_delivery_date
+    }
+    ORDER_ITEMS {
+      VARCHAR order_id PK
+      INT order_item_id PK
+      VARCHAR product_id FK
+      VARCHAR seller_id FK
+      TIMESTAMP shipping_limit_date
+      DECIMAL price
+      DECIMAL freight_value
+    }
+    PRODUCTS {
+      VARCHAR product_id PK
+      VARCHAR product_category_name
+      INT product_name_lenght
+      INT product_description_lenght
+      INT product_photos_qty
+      INT product_weight_g
+      INT product_length_cm
+      INT product_height_cm
+      INT product_width_cm
+    }
+    SELLERS {
+      VARCHAR seller_id PK
+      INT seller_zip_code_prefix
+      VARCHAR seller_city
+      CHAR seller_state
+    }
+    REVIEWS {
+      VARCHAR review_id PK
+      VARCHAR order_id FK
+      INT review_score
+      VARCHAR review_comment_title
+      TEXT review_comment_message
+      TIMESTAMP review_creation_date
+      TIMESTAMP review_answer_timestamp
+    }
+    GEOLOCATIONS {
+      INT zip_code_prefix PK
+      FLOAT latitude
+      FLOAT longitude
+      VARCHAR city
+      CHAR state
+    }
+    CUSTOMERS ||--o{ ORDERS : faz
+    ORDERS ||--o{ ORDER_ITEMS : contem
+    ORDER_ITEMS }o--|| PRODUCTS : refere-se
+    ORDER_ITEMS }o--|| SELLERS : vendido_por
+    ORDERS ||--|| REVIEWS : recebe
+    CUSTOMERS }o--|| GEOLOCATIONS : localiza
+    SELLERS }o--|| GEOLOCATIONS : localiza
