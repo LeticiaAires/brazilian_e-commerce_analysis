@@ -32,7 +32,8 @@ CREATE TABLE customers (
     customer_unique_id VARCHAR(32) NOT NULL,
     customer_zip_code_prefix INT NOT NULL,
     customer_city VARCHAR(100) NOT NULL,
-    customer_state CHAR(2) NOT NULL
+    customer_state CHAR(2) NOT NULL,
+    FOREIGN KEY (customer_zip_code_prefix) REFERENCES geolocations(zip_code_prefix)
 );
 
 CREATE TABLE products (
@@ -51,7 +52,8 @@ CREATE TABLE sellers (
     seller_id VARCHAR(32) PRIMARY KEY,
     seller_zip_code_prefix INT NOT NULL,
     seller_city VARCHAR(100) NOT NULL,
-    seller_state CHAR(2) NOT NULL
+    seller_state CHAR(2) NOT NULL,
+    FOREIGN KEY (seller_zip_code_prefix) REFERENCES geolocations(zip_code_prefix)
 );
 
 CREATE TABLE reviews (
@@ -64,3 +66,10 @@ CREATE TABLE reviews (
     review_answer_timestamp TIMESTAMP,
     FOREIGN KEY (order_id) REFERENCES orders(order_id)
 );
+    CREATE TABLE geolocations (
+        zip_code_prefix INT PRIMARY KEY,
+        latitude FLOAT NOT NULL,
+        longitude FLOAT NOT NULL,
+        city VARCHAR(100) NOT NULL,
+        state CHAR(2) NOT NULL
+    );

@@ -7,6 +7,8 @@ CUSTOMERS (1)---(N) ORDERS (1)---(N) ORDER_ITEMS (N)---(1) PRODUCTS
                                  |                  +--(N) SELLERS
                                  |
                                  +--(1) REVIEWS
+                                 |
+                                 +--(1) GEOLOCATIONS
 ```
 
 
@@ -76,11 +78,20 @@ classDiagram
         review_creation_date
         review_answer_timestamp
     }
+    class Geolocations {
+        zip_code_prefix
+        latitude
+        longitude
+        city
+        state
+    }
     Customers "1" -- "*" Orders : faz
     Orders "1" -- "*" OrderItems : contem
     OrderItems "*" -- "1" Products : refere-se
     OrderItems "*" -- "1" Sellers : vendido_por
     Orders "1" -- "1" Reviews : recebe
+    Customers "*" -- "1" Geolocations : localiza
+    Sellers "*" -- "1" Geolocations : localiza
 ```
 
 ## 3. DLD - Diagrama Lógico de Dados
@@ -148,6 +159,15 @@ classDiagram
 | review_comment_message  | TEXT         |    |    |
 | review_creation_date    | TIMESTAMP    |    |    |
 | review_answer_timestamp | TIMESTAMP    |    |    |
+
+### Tabela: geolocations
+| Campo           | Tipo         | PK | FK |
+|-----------------|--------------|----|----|
+| zip_code_prefix | INT          | X  |    |
+| latitude        | FLOAT        |    |    |
+| longitude       | FLOAT        |    |    |
+| city            | VARCHAR(100) |    |    |
+| state           | CHAR(2)      |    |    |
 
 ---
 
