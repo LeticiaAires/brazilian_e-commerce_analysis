@@ -27,11 +27,11 @@ O Modelo Entidade-Relacionamento (MER) é uma abordagem conceitual utilizada no 
 
 ### 1.2. Descrição das Entidades (Atributos)
 
-* **FATOITENSPEDIDO&#x20;**(order\_id (FK), <ins>order\_item\_id</ins>, product\_id (FK), seller\_id (FK), data\_pedido\_id (FK), preco, valor\_frete)
+* **FATOITENSPEDIDO&#x20;**(order\_id, <ins>order\_item\_id</ins>, product\_id, seller\_id, data\_pedido\_id, preco, valor\_frete)
 
 * **DIMPEDIDOS&#x20;**(<ins>order\_id</ins>, customer\_unique\_id, status\_pedido, tipo\_pagamento, valor\_total\_pagamento, data\_compra, data\_entrega, tempo\_entrega\_dias, flag\_atraso, nota\_avaliacao, titulo\_comentario\_avaliacao, mensagem\_comentario\_avaliacao, cep\_cliente\_prefixo, cidade\_cliente, estado\_cliente, latitude\_cliente, longitude\_cliente)
 
-* **DIMPRODUTOS&#x20;**(<ins>product\_id</ins>, categoria\_produto, categoria\_produto\_en, peso\_g, comprimento\_cm)
+* **DIMPRODUTOS&#x20;**(<ins>product\_id</ins>, categoria\_produto, peso\_g, comprimento\_cm)
 
 * **DIMVENDEDORES&#x20;**(<ins>seller\_id</ins>, cep\_vendedor\_prefixo, cidade\_vendedor, estado\_vendedor, latitude\_vendedor, longitude\_vendedor)
 
