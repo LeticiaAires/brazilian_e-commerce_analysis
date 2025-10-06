@@ -64,6 +64,9 @@ O Diagrama Entidade-Relacionamento (DER) é uma representação visual empregada
 
 ## 3. DLD - Diagrama Lógico de Dados
 
+O Diagrama Lógico de Dados (DLD) é uma representação gráfica que descreve a estrutura lógica de um banco de dados. Ele mostra detalhes importantes, como os tipos de atributos de cada entidade, além das chaves estrangeiras e restrições, como as chaves únicas (unique key). O principal objetivo do DLD é fornecer uma visão clara e estruturada de como o banco de dados deve ser projetado. Em síntese, o DLD serve como um guia visual para a implementação eficaz do banco de dados.
+
+![DLD](DLD.svg)
 
 ---
 
