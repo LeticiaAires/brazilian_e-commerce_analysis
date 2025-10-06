@@ -214,7 +214,3 @@ Esses são dados comerciais reais, foram anonimizados e as referências às empr
 |--------|------|-----------|-------|
 | 1.0 | 30/09/2025 | Criação inicial do dicionário de dados | Ana Beatriz |
 
----
-
-**Última Atualização**: 30/09/2025  
-**Gerado por**: Notebook de exploração automatizado
