@@ -1,6 +1,6 @@
 # Data Selection & Silver Modeling Description
 
-A camada Silver irá consolidar e limpar os dados da camada Bronze, organizando-os em um modelo dimensional otimizado. Este modelo será composto por uma tabela fato central (FatoItensPedido) e suas dimensões descritivas. A modelagem visa criar uma "fonte única da verdade" (Single Source of Truth) para as principais entidades de negócio.
+A camada Silver irá consolidar e limpar os dados da camada Bronze, organizando-os em um modelo dimensional otimizado. Este modelo será composto por uma tabela fato central (FatoItensPedido) e suas dimensões descritivas. A modelagem visa criar uma "fonte única da verdade" (Single Source of Truth) para as principais entidades de negócio. Para isso nessa modelagem usamos o esquema em estrela. 
 
 1. **Tabela Fato** (Fact Table): O núcleo do modelo continua sendo a FatoItensPedido, representando a venda de um item de produto dentro de um pedido. Ela conterá métricas quantitativas e as chaves estrangeiras para as dimensões.
 
@@ -60,7 +60,7 @@ O Modelo Entidade-Relacionamento (MER) é uma abordagem conceitual utilizada no 
 
 O Diagrama Entidade-Relacionamento (DER) é uma representação visual empregada em projetos de bancos de dados. Ele ilustra as entidades (objetos), seus atributos (características) e os relacionamentos existentes entre elas. Nesse diagrama, as entidades são representadas por retângulos, os atributos por elipses, e as conexões entre entidades são feitas por linhas que indicam seus relacionamentos. O DER é uma ferramenta essencial para visualizar e planejar a estrutura do banco de dados antes da implementação, auxiliando na definição de como os dados serão armazenados e acessados.
 
-
+![DER-simplificado](DER-simplificado.svg)
 
 ## 3. DLD - Diagrama Lógico de Dados
 
