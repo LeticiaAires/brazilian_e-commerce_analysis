@@ -13,10 +13,10 @@ venv/
 */.ipynb_checkpoints/*
 
 # Data files
-*.csv
+#*.csv
 *.parquet
 *.json
-data/raw/*
+#data/raw/*
 data/processed/*
 
 # IDE
