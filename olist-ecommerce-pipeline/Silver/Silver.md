@@ -27,13 +27,13 @@ O Modelo Entidade-Relacionamento (MER) é uma abordagem conceitual utilizada no 
 
 ### 1.2. Descrição das Entidades (Atributos)
 
-* **FATOITENSPEDIDO&#x20;**(order\_id, <ins>order\_item\_id</ins>, product\_id, seller\_id, data\_pedido\_id, preco, valor\_frete)
+* **FATOITENSPEDIDO&#x20;**(order\_id, <ins>order\_item\_id</ins>, product\_id, seller\_id, data\_pedido\_id, shipping_limit_date, price, freight_value)
 
-* **DIMPEDIDOS&#x20;**(<ins>order\_id</ins>, customer\_unique\_id, status\_pedido, tipo\_pagamento, valor\_total\_pagamento, data\_compra, data\_entrega, tempo\_entrega\_dias, flag\_atraso, nota\_avaliacao, titulo\_comentario\_avaliacao, mensagem\_comentario\_avaliacao, cep\_cliente\_prefixo, cidade\_cliente, estado\_cliente, latitude\_cliente, longitude\_cliente)
+* **DIMPEDIDOS&#x20;**(<ins>order\_id</ins>, customer\_unique\_id, order_status, qtd_payment_sequential, primeiro_payment_type, valor\_total\_pagamento, maximo_payment_installments, order_purchase_timestamp, order_delivered_customer_date, tempo\_entrega\_dias, flag\_atraso, order_approved_at, order_delivered_carrier_date, order_estimated_delivery_date, review_score, review_comment_title, review_comment_message, review_creation_date, review_answer_timestamp, customer_zip_code_prefix, customer_city, customer_state, geolocation_lat, geolocation_lng)
 
-* **DIMPRODUTOS&#x20;**(<ins>product\_id</ins>, categoria\_produto, peso\_g, comprimento\_cm)
+* **DIMPRODUTOS&#x20;**(<ins>product\_id</ins>, product_category_name, product_name_lenght, product_description_lenght, product_photos_qty, product_weight_g, product_length_cm, product_height_cm, product_width_cm)
 
-* **DIMVENDEDORES&#x20;**(<ins>seller\_id</ins>, cep\_vendedor\_prefixo, cidade\_vendedor, estado\_vendedor, latitude\_vendedor, longitude\_vendedor)
+* **DIMVENDEDORES&#x20;**(<ins>seller\_id</ins>, seller_zip_code_prefix, seller_city, seller_state, geolocation_lat, geolocation_lng)
 
 * **DIMDATA&#x20;**(<ins>data\_id</ins>, data\_completa, ano, mes, dia, dia\_da\_semana)
 
