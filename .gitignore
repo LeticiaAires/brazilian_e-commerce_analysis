@@ -16,7 +16,7 @@ venv/
 *.csv
 *.parquet
 *.json
-data/raw/*
+#data/raw/*
 data/processed/*
 
 # IDE
