@@ -11,6 +11,7 @@ venv/
 # Jupyter
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
+.ipynb_checkpoints/
 
 # Data files
 *.csv
@@ -28,3 +29,29 @@ data/processed/*
 # OS
 .DS_Store
 Thumbs.db
+.idea/
+.vscode/
+
+# env & secrets
+.venv/
+venv/
+env/
+.env
+
+# db/data dirs
+pgdata/
+
+# python junk
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.coverage
+.mypy_cache/
+.pytest_cache/
+
+
+
+
+
