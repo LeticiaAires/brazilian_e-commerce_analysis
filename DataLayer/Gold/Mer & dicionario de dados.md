@@ -1,6 +1,6 @@
-# Data Selection & Silver Modeling Description
+# Data Selection & Gold Modeling Description
 
-A camada Silver irá consolidar e limpar os dados da camada Bronze, organizando-os em um modelo dimensional otimizado. Este modelo será composto por uma tabela fato central (FatoItensPedido) e suas dimensões descritivas. A modelagem visa criar uma "fonte única da verdade" (Single Source of Truth) para as principais entidades de negócio. Para isso nessa modelagem usamos o esquema em estrela. 
+A camada Gold irá consolidar em um modelo dimensional otimizado a cabada Silver. Este modelo será composto por uma tabela fato central (FatoItensPedido) e suas dimensões descritivas. A modelagem visa criar uma "fonte única da verdade" (Single Source of Truth) para as principais entidades de negócio. Para isso nessa modelagem usamos o esquema em estrela. 
 
 1. **Tabela Fato** (Fact Table): O núcleo do modelo continua sendo a FatoItensPedido, representando a venda de um item de produto dentro de um pedido. Ela conterá métricas quantitativas e as chaves estrangeiras para as dimensões.
 
