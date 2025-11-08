@@ -1,6 +1,6 @@
-# Data Selection & Silver Modeling Description
+# Data Selection & Gold Modeling Description
 
-A camada Silver irá consolidar e limpar os dados da camada Bronze, organizando-os em um modelo dimensional otimizado. Este modelo será composto por uma tabela fato central (FatoItensPedido) e suas dimensões descritivas. A modelagem visa criar uma "fonte única da verdade" (Single Source of Truth) para as principais entidades de negócio. Para isso nessa modelagem usamos o esquema em estrela. 
+A camada Gold irá consolidar em um modelo dimensional otimizado a cabada Silver. Este modelo será composto por uma tabela fato central (FatoItensPedido) e suas dimensões descritivas. A modelagem visa criar uma "fonte única da verdade" (Single Source of Truth) para as principais entidades de negócio. Para isso nessa modelagem usamos o esquema em estrela. 
 
 1. **Tabela Fato** (Fact Table): O núcleo do modelo continua sendo a FatoItensPedido, representando a venda de um item de produto dentro de um pedido. Ela conterá métricas quantitativas e as chaves estrangeiras para as dimensões.
 
@@ -13,11 +13,11 @@ A camada Silver irá consolidar e limpar os dados da camada Bronze, organizando-
 
 As transformações incluirão: limpeza de dados, enriquecimento (junção de tabelas, incluindo a desnormalização da geografia) e criação de métricas de negócio (cálculo de datas e flags).
 
-## 1. MER - Modelo Entidade-Relacionamento
+## MER - Modelo Entidade-Relacionamento
 
 O Modelo Entidade-Relacionamento (MER) é uma abordagem conceitual utilizada no desenvolvimento de bancos de dados para representar entidades, seus atributos e os relacionamentos entre elas. Ele facilita a visualização da organização dos dados e da forma como as entidades interagem dentro do sistema de informações. O MER serve como a fundação conceitual para a criação dos Diagramas Entidade-Relacionamento (DER), que ilustram graficamente essa estrutura.
 
-### 1.1. Entidades
+### Entidades
 
 * FATOITENSPEDIDO (Fact)
 * DIMPEDIDOS (Dimension)
@@ -25,7 +25,7 @@ O Modelo Entidade-Relacionamento (MER) é uma abordagem conceitual utilizada no 
 * DIMVENDEDORES (Dimension)
 * DIMDATA (Dimension)
 
-### 1.2. Descrição das Entidades (Atributos)
+### Descrição das Entidades (Atributos)
 
 * **FATOITENSPEDIDO&#x20;**(order\_id, <ins>order\_item\_id</ins>, product\_id, seller\_id, data\_pedido\_id, shipping_limit_date, price, freight_value)
 
@@ -37,7 +37,7 @@ O Modelo Entidade-Relacionamento (MER) é uma abordagem conceitual utilizada no 
 
 * **DIMDATA&#x20;**(<ins>data\_id</ins>, data\_completa, ano, mes, dia, dia\_da\_semana)
 
-### 1.3. Relacionamentos
+### Relacionamentos
 
 * **PEDIDO — contém — ITEM DE PEDIDO**
     * Um PEDIDO (`DimPedidos`) pode conter um ou vários ITENS DE PEDIDO (`FatoItensPedido`), enquanto que um ITEM DE PEDIDO pertence a apenas um PEDIDO.
@@ -56,23 +56,23 @@ O Modelo Entidade-Relacionamento (MER) é uma abordagem conceitual utilizada no 
     * Cardinalidade: (1:n)
 
 
-## 2. DER - Diagrama de Entidade e Relacionamento
+## DER - Diagrama de Entidade e Relacionamento
 
 O Diagrama Entidade-Relacionamento (DER) é uma representação visual empregada em projetos de bancos de dados. Ele ilustra as entidades (objetos), seus atributos (características) e os relacionamentos existentes entre elas. Nesse diagrama, as entidades são representadas por retângulos, os atributos por elipses, e as conexões entre entidades são feitas por linhas que indicam seus relacionamentos. O DER é uma ferramenta essencial para visualizar e planejar a estrutura do banco de dados antes da implementação, auxiliando na definição de como os dados serão armazenados e acessados.
 
 ![DER-simplificado](DER-simplificado.svg)
 
-## 3. DLD - Diagrama Lógico de Dados
+## DLD - Diagrama Lógico de Dados
 
 O Diagrama Lógico de Dados (DLD) é uma representação gráfica que descreve a estrutura lógica de um banco de dados. Ele mostra detalhes importantes, como os tipos de atributos de cada entidade, além das chaves estrangeiras e restrições, como as chaves únicas (unique key). O principal objetivo do DLD é fornecer uma visão clara e estruturada de como o banco de dados deve ser projetado. Em síntese, o DLD serve como um guia visual para a implementação eficaz do banco de dados.
 
 ![DLD](DLD.svg)
 
-## 4. Dicionário de Dados
+## Dicionário de Dados
 
 O Dicionário de Dados é uma ferramenta fundamental no gerenciamento de dados. Trata-se de um documento ou repositório que descreve de forma detalhada os elementos de um banco de dados, como tabelas, campos, relacionamentos e regras de negócios associadas. Esse dicionário funciona como uma fonte confiável de informações para desenvolvedores, analistas e outros envolvidos, assegurando que os dados sejam compreendidos e utilizados de maneira consistente em todo o sistema. Ele oferece dados essenciais sobre a estrutura e o significado das informações, facilitando a manutenção, a integração e o uso eficiente das informações dentro de uma organização.
 
-### 4.1. Visão Geral do Esquema
+### Visão Geral do Esquema
 
 Este esquema de banco de dados é modelado como um **Star Schema**, comumente usado em Data Warehousing e Business Intelligence.
 
@@ -80,7 +80,7 @@ Este esquema de banco de dados é modelado como um **Star Schema**, comumente us
 * **Tabelas de Dimensão:** `DIMPRODUTOS`, `DIMVENDEDORES`, `DIMDATA` e `DIMPEDIDOS` são as tabelas de dimensão. Elas contêm os atributos descritivos que contextualizam os fatos (quem, o quê, quando, onde).
 
 
-### 4.2. Tabela `DIMPRODUTOS`
+### Tabela `DIMPRODUTOS`
 
 Armazena os atributos descritivos de cada produto.
 
@@ -98,7 +98,7 @@ Armazena os atributos descritivos de cada produto.
 
 ---
 
-### 4.3. Tabela `DIMVENDEDORES`
+### Tabela `DIMVENDEDORES`
 
 Armazena os atributos e informações de localização dos vendedores.
 
@@ -113,7 +113,7 @@ Armazena os atributos e informações de localização dos vendedores.
 
 ---
 
-### 4.4. Tabela `DIMDATA`
+### Tabela `DIMDATA`
 
 Tabela de dimensão de tempo, usada para analisar dados em diferentes granularidades de data.
 
@@ -128,7 +128,7 @@ Tabela de dimensão de tempo, usada para analisar dados em diferentes granularid
 
 ---
 
-### 4.5. Tabela `DIMPEDIDOS`
+### Tabela `DIMPEDIDOS`
 
 Armazena atributos relacionados ao pedido, ao cliente, à entrega e às avaliações. É uma dimensão complexa que agrupa diversas informações.
 
@@ -161,7 +161,7 @@ Armazena atributos relacionados ao pedido, ao cliente, à entrega e às avaliaç
 
 ---
 
-### 4.6. Tabela `FATOITENSPEDIDO`
+### Tabela `FATOITENSPEDIDO`
 
 Tabela fato que conecta todas as dimensões e contém as principais métricas de negócio por item de pedido.
 
@@ -177,7 +177,7 @@ Tabela fato que conecta todas as dimensões e contém as principais métricas de
 | `freight_value` | `DECIMAL(10,2)` | Valor do frete para o item. | **Métrica/Fato** |
 
 
-## 5. Bibliografia
+## Bibliografia
 
 OLIST. **Brazilian E-Commerce Public Dataset by Olist**. Plataforma Kaggle, 2018. Disponível em: [https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce). Acesso em: 5 out. 2025.
 
@@ -209,7 +209,7 @@ VERTABELO. **What Is a Star Schema Data Model and Why Is It Important?**. Vertab
 
 ---
 
-## 6. Histórico de Versão
+## Histórico de Versão
 
 | Versão | Data       | Descrição            | Autor                                           |
 | ------ | ---------- | -------------------- | ----------------------------------------------- |
