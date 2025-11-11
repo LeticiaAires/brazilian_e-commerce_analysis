@@ -51,10 +51,10 @@ O Diagrama Lógico de Dados (DLD) é uma representação gráfica que descreve a
 
 | Coluna | Tipo SQL | Nulo? | Descrição | Fonte / Observações |
 |---|---:|---:|---|---|
-| order_item_id | INTEGER PRIMARY KEY | NOT NULL | Identificador único do item (PK no Silver). | Origem: `order_items` — atenção: no raw era sequencial por `order_id`; aqui é chave única por linha. |
-| product_id | INTEGER | NOT NULL | Identificador do produto. | Mapeado de `order_items.product_id`. No raw é UUID/string; aqui aparece como INTEGER no DDL — confirmar transformação/encoding. |
-| seller_id | INTEGER | NOT NULL | Identificador do vendedor. | Mapeado de `order_items.seller_id`. Verificar encoding (raw UUID → inteiro?). |
-| order_id | INTEGER | NOT NULL | Identificador do pedido. | `orders.order_id` no raw (UUID). Aqui é INTEGER — confirmar transformação. |
+| order_item_id | VARCHAR(255) PRIMARY KEY | NOT NULL | Identificador único do item (PK no Silver). | Origem: `order_items` — atenção: no raw era sequencial por `order_id`; aqui é chave única por linha. |
+| product_id | VARCHAR(255) | NOT NULL | Identificador do produto. | Mapeado de `order_items.product_id` |
+| seller_id | VARCHAR(255) | NOT NULL | Identificador do vendedor. | Mapeado de `order_items.seller_id` |
+| order_id | VARCHAR(255) | NOT NULL | Identificador do pedido. | `orders.order_id` |
 | shipping_limit_date | TIMESTAMP | NULLABLE | Prazo limite para envio informado pelo seller. | `order_items.shipping_limit_date` |
 | price | DECIMAL(10,2) | NULLABLE | Preço do item (R$). | `order_items.price` |
 | freight_value | DECIMAL(10,2) | NULLABLE | Valor do frete (R$). | `order_items.freight_value` |
