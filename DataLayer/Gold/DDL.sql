@@ -1,33 +1,38 @@
--- -----------------------------------------------------
--- Tabelas Olist para PostgreSQL
--- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS DW;
+
+-- Drop na ordem correta (fato antes das dimensões) para evitar erros por FK
+DROP TABLE IF EXISTS DW.FATOITENSPEDIDO;
+DROP TABLE IF EXISTS DW.DIMPEDIDOS;
+DROP TABLE IF EXISTS DW.DIMDATA;
+DROP TABLE IF EXISTS DW.DIMVENDEDORES;
+DROP TABLE IF EXISTS DW.DIMPRODUTOS;
 
 -- DIMPRODUTOS
-CREATE TABLE IF NOT EXISTS "DIMPRODUTOS" (
-  "product_id" INTEGER PRIMARY KEY,
-  "product_category_name" VARCHAR(255),
-  "product_name_lenght" INTEGER,
-  "product_description_lenght" INTEGER,
-  "product_photos_qty" INTEGER,
-  "product_weight_g" DECIMAL(10,2),
-  "product_length_cm" DECIMAL(10,2),
-  "product_height_cm" DECIMAL(10,2),
-  "product_width_cm" DECIMAL(10,2)
+CREATE TABLE IF NOT EXISTS DW.DIMPRODUTOS (
+  "SRK_prod" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  "prod_category_name" VARCHAR(255),
+  "prod_name_lenght" INTEGER,
+  "prod_desc_lenght" INTEGER,
+  "prod_photos_qty" INTEGER,
+  "prod_weight_g" DECIMAL(10,2),
+  "prod_length_cm" DECIMAL(10,2),
+  "prod_height_cm" DECIMAL(10,2),
+  "prod_width_cm" DECIMAL(10,2)
 );
 
 -- DIMVENDEDORES
-CREATE TABLE IF NOT EXISTS "DIMVENDEDORES" (
-  "seller_id" INTEGER PRIMARY KEY,
-  "seller_zip_code_prefix" INTEGER,
-  "seller_city" VARCHAR(255),
-  "seller_state" VARCHAR(255),
-  "geolocation_lat" DECIMAL(9,6),
-  "geolocation_lng" DECIMAL(9,6)
+CREATE TABLE IF NOT EXISTS DW.DIMVENDEDORES (
+  "SRK_vend" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  "vend_zip_code_prefix" INTEGER,
+  "vend_city" VARCHAR(255),
+  "vend_state" VARCHAR(255),
+  "geo_lat" DECIMAL(9,6),
+  "geo_lng" DECIMAL(9,6)
 );
 
 -- DIMDATA
-CREATE TABLE IF NOT EXISTS "DIMDATA" (
-  "data_id" INTEGER PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS DW.DIMDATA (
+  "SRK_data" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "data_completa" DATE,
   "ano" INTEGER,
   "mes" INTEGER,
@@ -36,8 +41,8 @@ CREATE TABLE IF NOT EXISTS "DIMDATA" (
 );
 
 -- DIMPEDIDOS
-CREATE TABLE IF NOT EXISTS "DIMPEDIDOS" (
-  "order_id" INTEGER PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS DW.DIMPEDIDOS (
+  "SRK_ord" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "review_comment_title" VARCHAR(255),
   "review_comment_message" TEXT,
   "customer_unique_id" VARCHAR(255) NOT NULL,
@@ -59,30 +64,28 @@ CREATE TABLE IF NOT EXISTS "DIMPEDIDOS" (
   "customer_zip_code_prefix" INTEGER,
   "customer_city" VARCHAR(255),
   "customer_state" VARCHAR(255),
-  "geolocation_lat" DECIMAL(9,6),
-  "geolocation_lng" DECIMAL(9,6),
-  UNIQUE ("order_id")
+  "geo_lat" DECIMAL(9,6),
+  "geo_lng" DECIMAL(9,6)
 );
 
 -- FATOITENSPEDIDO
-CREATE TABLE IF NOT EXISTS "FATOITENSPEDIDO" (
-  "order_item_id" INTEGER PRIMARY KEY,
-  "product_id" INTEGER NOT NULL,
-  "seller_id" INTEGER NOT NULL,
-  "data_pedido_id" INTEGER NOT NULL,
-  "order_id" INTEGER NOT NULL,
-  "shipping_limit_date" TIMESTAMP,
+CREATE TABLE IF NOT EXISTS DW.FATOITENSPEDIDO (
+  "SRK_ped_item" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  "SRK_prod" INTEGER NOT NULL,
+  "SRK_vend" INTEGER NOT NULL,
+  "SRK_data_pedido" INTEGER NOT NULL,
+  "SRK_ord" INTEGER NOT NULL,
+  "ship_limit_date" TIMESTAMP,
   "price" DECIMAL(10,2),
   "freight_value" DECIMAL(10,2),
-  UNIQUE ("order_item_id"),
-  FOREIGN KEY ("product_id") REFERENCES "DIMPRODUTOS" ("product_id"),
-  FOREIGN KEY ("seller_id") REFERENCES "DIMVENDEDORES" ("seller_id"),
-  FOREIGN KEY ("data_pedido_id") REFERENCES "DIMDATA" ("data_id"),
-  FOREIGN KEY ("order_id") REFERENCES "DIMPEDIDOS" ("order_id") ON DELETE NO ACTION ON UPDATE NO ACTION
+  FOREIGN KEY ("SRK_prod") REFERENCES DW.DIMPRODUTOS ("SRK_prod"),
+  FOREIGN KEY ("SRK_vend") REFERENCES DW.DIMVENDEDORES ("SRK_vend"),
+  FOREIGN KEY ("SRK_data_pedido") REFERENCES DW.DIMDATA ("SRK_data"),
+  FOREIGN KEY ("SRK_ord") REFERENCES DW.DIMPEDIDOS ("SRK_ord") ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 -- Índices adicionais
-CREATE INDEX idx_fatoitenspedido_product_id ON "FATOITENSPEDIDO" ("product_id");
-CREATE INDEX idx_fatoitenspedido_seller_id ON "FATOITENSPEDIDO" ("seller_id");
-CREATE INDEX idx_fatoitenspedido_data_pedido_id ON "FATOITENSPEDIDO" ("data_pedido_id");
-CREATE INDEX idx_fatoitenspedido_order_id ON "FATOITENSPEDIDO" ("order_id");
+CREATE INDEX idx_fatoitenspedido_SRK_prod ON DW.FATOITENSPEDIDO ("SRK_prod");
+CREATE INDEX idx_fatoitenspedido_SRK_vend ON DW.FATOITENSPEDIDO ("SRK_vend");
+CREATE INDEX idx_fatoitenspedido_SRK_data_pedido ON DW.FATOITENSPEDIDO ("SRK_data_pedido");
+CREATE INDEX idx_fatoitenspedido_SRK_ord ON DW.FATOITENSPEDIDO ("SRK_ord");
