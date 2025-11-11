@@ -105,4 +105,4 @@ OLIST. **Brazilian E-Commerce Public Dataset by Olist**. Plataforma Kaggle, 2018
 | ------ | ---------- | -------------------- | ----------------------------------------------- |
 | 1.0    | 06/10/2025 | Criação do documento | [Pablo S. Costa](https://github.com/pabloheika) |
 | 2.0    | 05/11/2025 | Atualiza todo o documento | [Pablo S. Costa](https://github.com/pabloheika) |
-| 2.1    | 11/11/2025 | Atualiza tpos dos ID's | [Pablo S. Costa](https://github.com/pabloheika) |
+| 2.1    | 11/11/2025 | Atualiza tipos dos ID's | [Pablo S. Costa](https://github.com/pabloheika) |
