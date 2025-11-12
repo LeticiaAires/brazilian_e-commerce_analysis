@@ -1,9 +1,13 @@
-CREATE TABLE IF NOT EXISTS "ORDER_ITEMS" (
+CREATE SCHEMA IF NOT EXISTS DL;
+
+DROP TABLE IF EXISTS DL.ORDER_ITEMS;
+
+CREATE TABLE IF NOT EXISTS DL.ORDER_ITEMS (
     
-    "order_item_id" INTEGER PRIMARY KEY,
-    "product_id" INTEGER NOT NULL,
-    "seller_id" INTEGER NOT NULL,
-    "order_id" INTEGER NOT NULL,
+    "order_item_id" VARCHAR(255) PRIMARY KEY,
+    "product_id" VARCHAR(255) NOT NULL,
+    "seller_id" VARCHAR(255) NOT NULL,
+    "order_id" VARCHAR(255) NOT NULL,
     "shipping_limit_date" TIMESTAMP,
     "price" DECIMAL(10,2),
     "freight_value" DECIMAL(10,2),
