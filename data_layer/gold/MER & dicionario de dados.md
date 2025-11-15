@@ -85,14 +85,14 @@ O Dicionário de Dados é uma ferramenta fundamental no gerenciamento de dados. 
 
 ### Convenção de Nomenclatura (Mnemônicos)
 
-| Prefixo | Significado | Exemplo |
-|----------|--------------|----------|
-| `SRK_` | Surrogate Key (chave substituta) | `SRK_ord`, `SRK_data` |
-| `prod_` | Atributos da tabela DIM_PRODUTOS | `prod_weight_g` |
-| `vend_` | Atributos da tabela DIM_VENDEDORES | `vend_city` |
-| `geo_` | Geolocalização (usado em várias dimensões) | `geo_lat`, `geo_lng` |
-| `ord_` | ordem (pedido) | `SRK_ord` |
-| ... | ... | ... |
+| Prefixo | Significado                                | Exemplo               |
+| ------- | ------------------------------------------ | --------------------- |
+| `SRK_`  | Surrogate Key (chave substituta)           | `SRK_ord`, `SRK_data` |
+| `prod_` | Atributos da tabela DIM_PRODUTOS           | `prod_weight_g`       |
+| `vend_` | Atributos da tabela DIM_VENDEDORES         | `vend_city`           |
+| `geo_`  | Geolocalização (usado em várias dimensões) | `geo_lat`, `geo_lng`  |
+| `ord_`  | ordem (pedido)                             | `SRK_ord`             |
+| ...     | ...                                        | ...                   |
 
 > **Observação:** Foram aplicados mnemônicos consistentes para unificação de nomenclatura, substituindo colunas antigas como `product_id` → `SRK_prod`, `seller_city` → `vend_city`, `data_id` → `SRK_data` e `order_id` → `SRK_ord`. Essas e outras nomeclaturas estão disponiveis no arquivo de mnemônicos.
 
@@ -100,30 +100,30 @@ O Dicionário de Dados é uma ferramenta fundamental no gerenciamento de dados. 
 
 ### Tabela `DIM_PRODUTOS`
 
-| Nome do Campo | Tipo de Dado | Descrição | Observações |
-|----------------|--------------|------------|--------------|
-| `SRK_prod` | INTEGER | Identificador único (Surrogate Key). | **PK** |
-| `prod_category_name` | VARCHAR(255) | Nome da categoria à qual o produto pertence. | |
-| `prod_name_lenght` | INTEGER | Número de caracteres no nome do produto. | |
-| `prod_desc_lenght` | INTEGER | Número de caracteres na descrição do produto. | |
-| `prod_photos_qty` | INTEGER | Quantidade de fotos publicadas do produto. | |
-| `prod_weight_g` | DECIMAL(10,2) | Peso do produto em gramas. | |
-| `prod_length_cm` | DECIMAL(10,2) | Comprimento do produto em centímetros. | |
-| `prod_height_cm` | DECIMAL(10,2) | Altura do produto em centímetros. | |
-| `prod_width_cm` | DECIMAL(10,2) | Largura do produto em centímetros. | |
+| Nome do Campo        | Tipo de Dado  | Descrição                                     | Observações |
+| -------------------- | ------------- | --------------------------------------------- | ----------- |
+| `SRK_prod`           | INTEGER       | Identificador único (Surrogate Key).          | **PK**      |
+| `prod_category_name` | VARCHAR(255)  | Nome da categoria à qual o produto pertence.  |             |
+| `prod_name_lenght`   | INTEGER       | Número de caracteres no nome do produto.      |             |
+| `prod_desc_lenght`   | INTEGER       | Número de caracteres na descrição do produto. |             |
+| `prod_photos_qty`    | INTEGER       | Quantidade de fotos publicadas do produto.    |             |
+| `prod_weight_g`      | DECIMAL(10,2) | Peso do produto em gramas.                    |             |
+| `prod_length_cm`     | DECIMAL(10,2) | Comprimento do produto em centímetros.        |             |
+| `prod_height_cm`     | DECIMAL(10,2) | Altura do produto em centímetros.             |             |
+| `prod_width_cm`      | DECIMAL(10,2) | Largura do produto em centímetros.            |             |
 
 ---
 
 ### Tabela `DIM_VENDEDORES`
 
-| Nome do Campo | Tipo de Dado | Descrição | Observações |
-|----------------|--------------|------------|--------------|
-| `SRK_vend` | INTEGER | Identificador único (Surrogate Key). | **PK** |
-| `vend_zip_code_prefix` | INTEGER | Os 5 primeiros dígitos do CEP do vendedor. | |
-| `vend_city` | VARCHAR(255) | Cidade do vendedor. | |
-| `vend_state` | VARCHAR(255) | Estado (UF) do vendedor. | |
-| `geo_lat` | DECIMAL(9,6) | Latitude da localização geográfica do vendedor. | |
-| `geo_lng` | DECIMAL(9,6) | Longitude da localização geográfica do vendedor. | |
+| Nome do Campo          | Tipo de Dado | Descrição                                        | Observações |
+| ---------------------- | ------------ | ------------------------------------------------ | ----------- |
+| `SRK_vend`             | INTEGER      | Identificador único (Surrogate Key).             | **PK**      |
+| `vend_zip_code_prefix` | INTEGER      | Os 5 primeiros dígitos do CEP do vendedor.       |             |
+| `vend_city`            | VARCHAR(255) | Cidade do vendedor.                              |             |
+| `vend_state`           | VARCHAR(255) | Estado (UF) do vendedor.                         |             |
+| `geo_lat`              | DECIMAL(9,6) | Latitude da localização geográfica do vendedor.  |             |
+| `geo_lng`              | DECIMAL(9,6) | Longitude da localização geográfica do vendedor. |             |
 
 ---
 
@@ -131,45 +131,45 @@ O Dicionário de Dados é uma ferramenta fundamental no gerenciamento de dados. 
 
 Tabela de dimensão de tempo, usada para analisar dados em diferentes granularidades de data.
 
-| Nome do Campo | Tipo de Dado | Descrição | Observações |
-|----------------|--------------|------------|--------------|
-| `SRK_data` | INTEGER | Identificador único (Surrogate Key). | **PK** |
-| `data_completa` | DATE |  A data completa no formato AAAA-MM-DD. | |
-| `ano` | INTEGER | Ano extraído da data completa. | |
-| `mes` | INTEGER | Mês extraído da data completa (1 a 12). | |
-| `dia` | INTEGER | Dia extraído da data completa (1 a 31). | |
-| `dia_da_semana` | VARCHAR(10) | Nome do dia da semana (ex: 'Segunda-feira'). | |
+| Nome do Campo   | Tipo de Dado | Descrição                                    | Observações |
+| --------------- | ------------ | -------------------------------------------- | ----------- |
+| `SRK_data`      | INTEGER      | Identificador único (Surrogate Key).         | **PK**      |
+| `data_completa` | DATE         | A data completa no formato AAAA-MM-DD.       |             |
+| `ano`           | INTEGER      | Ano extraído da data completa.               |             |
+| `mes`           | INTEGER      | Mês extraído da data completa (1 a 12).      |             |
+| `dia`           | INTEGER      | Dia extraído da data completa (1 a 31).      |             |
+| `dia_da_semana` | VARCHAR(10)  | Nome do dia da semana (ex: 'Segunda-feira'). |             |
 
 ---
 
 ### Tabela `DIM_PEDIDOS`
 
-| Nome do Campo | Tipo de Dado | Descrição | Observações |
-|----------------|--------------|------------|--------------|
-| `SRK_ord` | INTEGER | Identificador único (Surrogate Key). | **PK** |
-| `review_comment_title` | VARCHAR(255) | Título do comentário de avaliação do cliente. | |
-| `review_comment_message` | TEXT | Texto completo do comentário de avaliação. | |
-| `customer_unique_id` | VARCHAR(255) | Identificador único para cada cliente. | **NOT NULL** |
-| `order_status` | VARCHAR(50) | Status atual do pedido (ex: 'delivered', 'shipped'). | **NOT NULL** |
-| `qtd_payment_sequential` | INTEGER | Quantidade de métodos de pagamento usados no pedido. | |
-| `primeiro_payment_type` | VARCHAR(50) | O primeiro ou principal método de pagamento. | |
-| `valor_total_pagamento` | DECIMAL(10,2) | Soma total paga pelo pedido. | |
-| `maximo_payment_installments` | INTEGER | Número máximo de parcelas escolhido. | |
-| `order_purchase_timestamp` | TIMESTAMP | Data e hora em que o pedido foi realizado. | **NOT NULL** |
-| `order_delivered_customer_date` | TIMESTAMP | Data e hora em que o pedido foi entregue ao cliente. | |
-| `tempo_entrega_dias` | INTEGER | Número de dias entre a compra e a entrega. | |
-| `flag_atraso` | SMALLINT | Indicador de atraso (ex: 1 para sim, 0 para não). | |
-| `order_approved_at` | TIMESTAMP | Data e hora da aprovação do pagamento. | |
-| `order_delivered_carrier_date` | TIMESTAMP | Data e hora em que o pedido foi postado na transportadora. | |
-| `order_estimated_delivery_date` | TIMESTAMP | Data estimada de entrega informada no momento da compra. | |
-| `review_score` | SMALLINT | Nota da avaliação do cliente (valor de 1 a 5). | |
-| `review_creation_date` | TIMESTAMP | Data e hora em que a avaliação foi criada. | |
-| `review_answer_timestamp` | TIMESTAMP | Data e hora em que o vendedor respondeu à avaliação. | |
-| `customer_zip_code_prefix` | INTEGER | Os 5 primeiros dígitos do CEP do cliente. | |
-| `customer_city` | VARCHAR(255) | Cidade do cliente. | |
-| `customer_state` | VARCHAR(255) | Estado (UF) do cliente. | |
-| `geo_lat` | DECIMAL(9,6) | Latitude da localização geográfica do cliente. | |
-| `geo_lng` | DECIMAL(9,6) | Longitude da localização geográfica do cliente. | |
+| Nome do Campo                   | Tipo de Dado  | Descrição                                                  | Observações  |
+| ------------------------------- | ------------- | ---------------------------------------------------------- | ------------ |
+| `SRK_ord`                       | INTEGER       | Identificador único (Surrogate Key).                       | **PK**       |
+| `review_comment_title`          | VARCHAR(255)  | Título do comentário de avaliação do cliente.              |              |
+| `review_comment_message`        | TEXT          | Texto completo do comentário de avaliação.                 |              |
+| `customer_unique_id`            | VARCHAR(255)  | Identificador único para cada cliente.                     | **NOT NULL** |
+| `order_status`                  | VARCHAR(50)   | Status atual do pedido (ex: 'delivered', 'shipped').       | **NOT NULL** |
+| `qtd_payment_sequential`        | INTEGER       | Quantidade de métodos de pagamento usados no pedido.       |              |
+| `primeiro_payment_type`         | VARCHAR(50)   | O primeiro ou principal método de pagamento.               |              |
+| `valor_total_pagamento`         | DECIMAL(10,2) | Soma total paga pelo pedido.                               |              |
+| `maximo_payment_installments`   | INTEGER       | Número máximo de parcelas escolhido.                       |              |
+| `order_purchase_timestamp`      | TIMESTAMP     | Data e hora em que o pedido foi realizado.                 | **NOT NULL** |
+| `order_delivered_customer_date` | TIMESTAMP     | Data e hora em que o pedido foi entregue ao cliente.       |              |
+| `tempo_entrega_dias`            | INTEGER       | Número de dias entre a compra e a entrega.                 |              |
+| `flag_atraso`                   | SMALLINT      | Indicador de atraso (ex: 1 para sim, 0 para não).          |              |
+| `order_approved_at`             | TIMESTAMP     | Data e hora da aprovação do pagamento.                     |              |
+| `order_delivered_carrier_date`  | TIMESTAMP     | Data e hora em que o pedido foi postado na transportadora. |              |
+| `order_estimated_delivery_date` | TIMESTAMP     | Data estimada de entrega informada no momento da compra.   |              |
+| `review_score`                  | SMALLINT      | Nota da avaliação do cliente (valor de 1 a 5).             |              |
+| `review_creation_date`          | TIMESTAMP     | Data e hora em que a avaliação foi criada.                 |              |
+| `review_answer_timestamp`       | TIMESTAMP     | Data e hora em que o vendedor respondeu à avaliação.       |              |
+| `customer_zip_code_prefix`      | INTEGER       | Os 5 primeiros dígitos do CEP do cliente.                  |              |
+| `customer_city`                 | VARCHAR(255)  | Cidade do cliente.                                         |              |
+| `customer_state`                | VARCHAR(255)  | Estado (UF) do cliente.                                    |              |
+| `geo_lat`                       | DECIMAL(9,6)  | Latitude da localização geográfica do cliente.             |              |
+| `geo_lng`                       | DECIMAL(9,6)  | Longitude da localização geográfica do cliente.            |              |
 
 ---
 
@@ -177,16 +177,16 @@ Tabela de dimensão de tempo, usada para analisar dados em diferentes granularid
 
 Tabela fato que conecta todas as dimensões e contém as principais métricas de negócio por item de pedido.
 
-| Nome do Campo | Tipo de Dado | Descrição | Observações |
-|----------------|--------------|------------|--------------|
-| `SRK_ped_item` | INTEGER | Identificador único (Surrogate Key). | **PK** |
-| `SRK_prod` | INTEGER | Ref. `DIM_PRODUTOS`. | **FK** |
-| `SRK_vend` | INTEGER | Ref. `DIM_VENDEDORES`. | **FK** |
-| `SRK_data_pedido` | INTEGER | Ref. `DIM_DATA`. | **FK** |
-| `SRK_ord` | INTEGER | Ref. `DIM_PEDIDOS`. | **FK** |
-| `ship_limit_date` | TIMESTAMP | Data e hora limite para o vendedor postar o produto. | |
-| `price` | DECIMAL(10,2) | Preço do produto (valor unitário). | **Métrica/Fato** |
-| `freight_value` | DECIMAL(10,2) | Valor do frete para o item. | **Métrica/Fato** |
+| Nome do Campo     | Tipo de Dado  | Descrição                                            | Observações      |
+| ----------------- | ------------- | ---------------------------------------------------- | ---------------- |
+| `SRK_ped_item`    | INTEGER       | Identificador único (Surrogate Key).                 | **PK**           |
+| `SRK_prod`        | INTEGER       | Ref. `DIM_PRODUTOS`.                                 | **FK**           |
+| `SRK_vend`        | INTEGER       | Ref. `DIM_VENDEDORES`.                               | **FK**           |
+| `SRK_data_pedido` | INTEGER       | Ref. `DIM_DATA`.                                     | **FK**           |
+| `SRK_ord`         | INTEGER       | Ref. `DIM_PEDIDOS`.                                  | **FK**           |
+| `ship_limit_date` | TIMESTAMP     | Data e hora limite para o vendedor postar o produto. |                  |
+| `price`           | DECIMAL(10,2) | Preço do produto (valor unitário).                   | **Métrica/Fato** |
+| `freight_value`   | DECIMAL(10,2) | Valor do frete para o item.                          | **Métrica/Fato** |
 
 ---
 
@@ -225,7 +225,7 @@ VERTABELO. **What Is a Star Schema Data Model and Why Is It Important?**. Vertab
 
 ## Histórico de Versão
 
-| Versão | Data       | Descrição            | Autor                                           |
-| ------ | ---------- | -------------------- | ----------------------------------------------- |
-| 1.0    | 06/10/2025 | Criação do documento | [Pablo S. Costa](https://github.com/pabloheika) |
-| 1.1 | 11/11/2025 | Atualização de nomenclatura e mnemônicos (SRK, prod, vend), renomeia atributos | [Pablo S. Costa](https://github.com/pabloheika) |
+| Versão | Data       | Descrição                                                                      | Autor                                           |
+| ------ | ---------- | ------------------------------------------------------------------------------ | ----------------------------------------------- |
+| 1.0    | 06/10/2025 | Criação do documento                                                           | [Pablo S. Costa](https://github.com/pabloheika) |
+| 1.1    | 11/11/2025 | Atualização de nomenclatura e mnemônicos (SRK, prod, vend), renomeia atributos | [Pablo S. Costa](https://github.com/pabloheika) |
