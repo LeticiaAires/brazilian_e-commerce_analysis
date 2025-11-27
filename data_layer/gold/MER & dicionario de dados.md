@@ -83,18 +83,6 @@ O Diagrama Lógico de Dados (DLD) é uma representação gráfica que descreve a
 
 O Dicionário de Dados é uma ferramenta fundamental no gerenciamento de dados. Trata-se de um documento ou repositório que descreve de forma detalhada os elementos de um banco de dados, como tabelas, campos, relacionamentos e regras de negócios associadas. Esse dicionário funciona como uma fonte confiável de informações para desenvolvedores, analistas e outros envolvidos, assegurando que os dados sejam compreendidos e utilizados de maneira consistente em todo o sistema. Ele oferece dados essenciais sobre a estrutura e o significado das informações, facilitando a manutenção, a integração e o uso eficiente das informações dentro de uma organização.
 
-### Convenção de Nomenclatura (Mnemônicos)
-
-| Prefixo | Significado                                | Exemplo               |
-| ------- | ------------------------------------------ | --------------------- |
-| `SRK_`  | Surrogate Key (chave substituta)           | `SRK_ord`, `SRK_data` |
-| `prod_` | Atributos da tabela DIM_PRODUTOS           | `prod_weight_g`       |
-| `vend_` | Atributos da tabela DIM_VENDEDORES         | `vend_city`           |
-| `geo_`  | Geolocalização (usado em várias dimensões) | `geo_lat`, `geo_lng`  |
-| `ord_`  | ordem (pedido)                             | `SRK_ord`             |
-| ...     | ...                                        | ...                   |
-
-> **Observação:** Foram aplicados mnemônicos consistentes para unificação de nomenclatura, substituindo colunas antigas como `product_id` → `SRK_prod`, `seller_city` → `vend_city`, `data_id` → `SRK_data` e `order_id` → `SRK_ord`. Essas e outras nomeclaturas estão disponiveis no arquivo de mnemônicos.
 
 ---
 
