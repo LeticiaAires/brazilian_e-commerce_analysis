@@ -67,7 +67,7 @@ O Modelo Entidade-Relacionamento (MER) é uma abordagem conceitual utilizada no 
 
 O Diagrama Entidade-Relacionamento (DER) é uma representação visual empregada em projetos de bancos de dados. Ele ilustra as entidades (objetos), seus atributos (características) e os relacionamentos existentes entre elas. Nesse diagrama, as entidades são representadas por retângulos, os atributos por elipses, e as conexões entre entidades são feitas por linhas que indicam seus relacionamentos. O DER é uma ferramenta essencial para visualizar e planejar a estrutura do banco de dados antes da implementação, auxiliando na definição de como os dados serão armazenados e acessados.
 
-![DER](DER.png)
+![DER](../assets/DER_gold.png)
 
 ---
 
@@ -75,7 +75,7 @@ O Diagrama Entidade-Relacionamento (DER) é uma representação visual empregada
 
 O Diagrama Lógico de Dados (DLD) é uma representação gráfica que descreve a estrutura lógica de um banco de dados. Ele mostra detalhes importantes, como os tipos de atributos de cada entidade, além das chaves estrangeiras e restrições, como as chaves únicas (unique key). O principal objetivo do DLD é fornecer uma visão clara e estruturada de como o banco de dados deve ser projetado. Em síntese, o DLD serve como um guia visual para a implementação eficaz do banco de dados.
 
-![DLD](DLD.png)
+![DLD](../assets/DLD_gold.png)
 
 ---
 
@@ -83,18 +83,6 @@ O Diagrama Lógico de Dados (DLD) é uma representação gráfica que descreve a
 
 O Dicionário de Dados é uma ferramenta fundamental no gerenciamento de dados. Trata-se de um documento ou repositório que descreve de forma detalhada os elementos de um banco de dados, como tabelas, campos, relacionamentos e regras de negócios associadas. Esse dicionário funciona como uma fonte confiável de informações para desenvolvedores, analistas e outros envolvidos, assegurando que os dados sejam compreendidos e utilizados de maneira consistente em todo o sistema. Ele oferece dados essenciais sobre a estrutura e o significado das informações, facilitando a manutenção, a integração e o uso eficiente das informações dentro de uma organização.
 
-### Convenção de Nomenclatura (Mnemônicos)
-
-| Prefixo | Significado                                | Exemplo               |
-| ------- | ------------------------------------------ | --------------------- |
-| `SRK_`  | Surrogate Key (chave substituta)           | `SRK_ord`, `SRK_data` |
-| `prod_` | Atributos da tabela DIM_PRODUTOS           | `prod_weight_g`       |
-| `vend_` | Atributos da tabela DIM_VENDEDORES         | `vend_city`           |
-| `geo_`  | Geolocalização (usado em várias dimensões) | `geo_lat`, `geo_lng`  |
-| `ord_`  | ordem (pedido)                             | `SRK_ord`             |
-| ...     | ...                                        | ...                   |
-
-> **Observação:** Foram aplicados mnemônicos consistentes para unificação de nomenclatura, substituindo colunas antigas como `product_id` → `SRK_prod`, `seller_city` → `vend_city`, `data_id` → `SRK_data` e `order_id` → `SRK_ord`. Essas e outras nomeclaturas estão disponiveis no arquivo de mnemônicos.
 
 ---
 
