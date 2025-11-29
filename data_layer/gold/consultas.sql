@@ -1,18 +1,5 @@
--- ============================================================
--- CONSULTAS SQL - CAMADA GOLD
--- Projeto: Brazilian E-Commerce Analysis
--- Schema: DW (Data Warehouse)
--- Modelo: Star Schema
--- 
--- Regras de Negócio Aplicadas (consultas simples):
--- 🚫 Não entrega
--- 📦 Estoque: meses
--- ⭐ BCG
--- 🔁 Funnel: registrar motivo nas regressões e travar se cancelamentos altos
--- 🚚 UF destino: SLAs diferenciados
--- ============================================================
 
--- 1) 🚫 Não entrega: Contagem de pedidos por status
+-- 1) Não entrega: Contagem de pedidos por status
 SELECT
     ord_stt AS status_pedido,
     COUNT(DISTINCT "SRK_ord") AS total_pedidos
@@ -24,7 +11,7 @@ ORDER BY
     total_pedidos DESC;
 
 
--- 2) 📦 Estoque: Total de vendas por mês
+-- 2) Estoque: Total de vendas por mês
 SELECT
     dim_dat.mes AS mes,
     COUNT(fat."SRK_ord_its") AS total_vendas,
@@ -40,7 +27,7 @@ ORDER BY
     dim_dat.mes;
 
 
--- 3) ⭐ BCG: Top categorias por receita
+-- 3) BCG: Top categorias por receita
 SELECT
     dim_prd.prd_cat_nam AS categoria_produto,
     COUNT(fat."SRK_ord_its") AS total_vendas,
@@ -58,7 +45,7 @@ ORDER BY
     receita_total DESC;
 
 
--- 4) 🔁 Funnel: Contagem de pedidos cancelados
+-- 4) Funnel: Contagem de pedidos cancelados
 SELECT
     COUNT(DISTINCT "SRK_ord") AS total_pedidos_cancelados,
     SUM(val_tot_pay) AS valor_perdido
@@ -68,7 +55,7 @@ WHERE
     ord_stt = 'canceled';
 
 
--- 5) 🚚 UF destino: Tempo médio de entrega por estado
+-- 5) UF destino: Tempo médio de entrega por estado
 SELECT
     cli_sta AS estado_cliente,
     AVG(tem_de_env_dia) AS tempo_medio_entrega_dias,
